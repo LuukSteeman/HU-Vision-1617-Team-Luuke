@@ -9,24 +9,31 @@
 #include "HereBeDragons.h"
 #include "ImageFactory.h"
 #include "DLLExecution.h"
+#include "exectimer.h"
 
 void drawFeatureDebugImage(IntensityImage &image, FeatureMap &features);
 bool executeSteps(DLLExecution * executor);
 
 int main(int argc, char * argv[]) {
 
+	// maak een timer object aan
+	BaseTimer* bt = new BaseTimer();
+
+	// start de timer
+	bt->start();
+
 	ImageFactory::setImplementation(ImageFactory::DEFAULT);
 	//ImageFactory::setImplementation(ImageFactory::STUDENT);
 
 
-	ImageIO::debugFolder = "C:\\Users\\luuks\\OneDrive\\Documenten\\HBO-ICT_jaar_2\\Periode 3\\Vision\\HU-Vision-1617-Team-Luuke\\source\\ExternalDLL\\ExternalDLL\\Debug";
+	ImageIO::debugFolder = "C:\\debug";
 	ImageIO::isInDebugMode = true; //If set to false the ImageIO class will skip any image save function calls
 
 
 
 
 	RGBImage * input = ImageFactory::newRGBImage();
-	if (!ImageIO::loadImage("C:\\Users\\luuks\\OneDrive\\Documenten\\HBO-ICT_jaar_2\\Periode 3\\Vision\\HU-Vision-1617-Team-Luuke\\testsets\\Set A\\TestSet Images\\child-1.png", *input)) {
+	if (!ImageIO::loadImage("C:\\Users\\luuks\\OneDrive\\Documenten\\HBO-ICT_jaar_2\\Periode 3\\Vision\\HU-Vision-1617-Team-Luuke\\testsets\\Set A\\TestSet Images\\male-2.png", *input)) {
 		std::cout << "Image could not be loaded!" << std::endl;
 		system("pause");
 		return 0;
@@ -45,7 +52,11 @@ int main(int argc, char * argv[]) {
 			std::cout << (i+1) << ": " << executor->facialParameters[i] << std::endl;
 		}
 	}
+	// stop de timer
+	bt->stop();
 
+	// rapporteer door de elapsed...() functies aan te roepen
+	std::cout << "Time for the operation was: " << bt->elapsedMilliSeconds() << " milliseconds (answer: " << ")" << std::endl;
 	delete executor;
 	system("pause");
 	return 1;
@@ -80,7 +91,7 @@ bool executeSteps(DLLExecution * executor) {
 	}
 	ImageIO::saveIntensityImage(*executor->resultPreProcessingStep3, ImageIO::getDebugFileName("Pre-processing-3.png"));
 
-	if (!executor->executePreProcessingStep4(false)) {
+	if (!executor->executePreProcessingStep4(true)) {
 		std::cout << "Pre-processing step 4 failed!" << std::endl;
 		return false;
 	}
@@ -155,6 +166,8 @@ bool executeSteps(DLLExecution * executor) {
 		std::cout << "Representation failed!" << std::endl;
 		return false;
 	}
+
+
 	return true;
 }
 
@@ -222,4 +235,7 @@ void drawFeatureDebugImage(IntensityImage &image, FeatureMap &features) {
 
 	ImageIO::saveRGBImage(*debug, ImageIO::getDebugFileName("feature-points-debug.png"));
 	delete debug;
+
+
+
 }

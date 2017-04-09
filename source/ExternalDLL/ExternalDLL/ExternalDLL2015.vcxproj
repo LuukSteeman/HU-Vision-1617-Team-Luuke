@@ -83,10 +83,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Algorithm.h" />
+    <ClInclude Include="basetimer.h" />
     <ClInclude Include="DefaultExtraction.h" />
     <ClInclude Include="DefaultLocalization.h" />
     <ClInclude Include="DefaultPreProcessing.h" />
     <ClInclude Include="DLLExecution.h" />
+    <ClInclude Include="exectimer.h" />
     <ClInclude Include="export.h" />
     <ClInclude Include="Extraction.h" />
     <ClInclude Include="Feature.h" />
@@ -114,10 +116,12 @@
     <ClInclude Include="StudentPreProcessing.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="basetimer.cpp" />
     <ClCompile Include="DefaultExtraction.cpp" />
     <ClCompile Include="DefaultLocalization.cpp" />
     <ClCompile Include="DefaultPreProcessing.cpp" />
     <ClCompile Include="DLLExecution.cpp" />
+    <ClCompile Include="exectimer.cpp" />
     <ClCompile Include="export.cpp" />
     <ClCompile Include="Feature.cpp" />
     <ClCompile Include="FeatureMap.cpp" />
