@@ -84,6 +84,15 @@ void apply_kernel(IntensityImage & returnImage, int matrix[3][3], int x, int y, 
 }
 
 
+/*
+
+
+
+
+
+
+*/
+
 void find_edge(IntensityImage & image, int x_shift, int y_shift, int x, int y, int dir, int lower_threshold, std::vector<std::vector<int>> & gradenVector)
 {
 	int width = image.getWidth();
@@ -389,8 +398,8 @@ void suppress_non_maximum(int x_shift, int y_shift, int x, int y, int dir, int l
 
 void edge_thinning(std::vector<std::vector<int>> & gradenVector, IntensityImage & returnImage)
 {
-	Intensity upper_threshold = 150;
-	Intensity lower_threshold = 80;
+	Intensity upper_threshold = 180;
+	Intensity lower_threshold = 140;
 	for (int x = 0; x < returnImage.getWidth(); x++)
 	{
 		for (int y = 0; y < returnImage.getHeight(); y++)
@@ -426,7 +435,7 @@ void edge_thinning(std::vector<std::vector<int>> & gradenVector, IntensityImage 
 
 void find_non_maximum_suppression(IntensityImage & returnImage, std::vector<std::vector<int>> gradenVector)
 {
-	Intensity lower_threshold = 80;
+	Intensity lower_threshold = 140;
 	for (int x = 1; x < returnImage.getWidth() - 1; x++)
 	{
 		for (int y = 1; y < returnImage.getHeight() - 1; y++)

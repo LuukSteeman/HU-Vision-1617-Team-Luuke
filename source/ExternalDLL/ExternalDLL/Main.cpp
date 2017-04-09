@@ -33,7 +33,7 @@ int main(int argc, char * argv[]) {
 
 
 	RGBImage * input = ImageFactory::newRGBImage();
-	if (!ImageIO::loadImage("C:\\female-1.png", *input)) {
+	if (!ImageIO::loadImage("C:\\Users\\luuks\\OneDrive\\Documenten\\HBO-ICT_jaar_2\\Periode 3\\Vision\\HU-Vision-1617-Team-Luuke\\testsets\\Set A\\TestSet Images\\male-2.png", *input)) {
 		std::cout << "Image could not be loaded!" << std::endl;
 		system("pause");
 		return 0;
